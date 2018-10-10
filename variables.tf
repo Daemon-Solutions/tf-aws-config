@@ -82,3 +82,9 @@ variable "password_max_age" {
 variable "s3_bucket_server_side_encryption_enabled" {
   default = "0"
 }
+
+variable "aws_config_s3_bucket" {}
+
+variable "s3_bucket_prefix" {
+  default = ""
+}
