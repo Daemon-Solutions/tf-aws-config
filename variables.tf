@@ -84,6 +84,7 @@ variable "s3_bucket_server_side_encryption_enabled" {
 }
 
 variable "aws_config_s3_bucket" {}
+variable "aws_config_s3_bucket_arn" {}
 
 variable "s3_bucket_prefix" {
   default = ""
