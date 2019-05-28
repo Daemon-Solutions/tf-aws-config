@@ -1,5 +1,5 @@
-resource "aws_config_config_rule" "iam-password-policy" {
-  count            = "${var.iam_password_policy_enabled}"
+resource "aws_config_config_rule" "iam_password_policy" {
+  count            = "${var.config_rule_iam_password_policy_enabled ? 1 : 0}"
   name             = "iam-password-policy"
   description      = "Ensure the account password policy for IAM users meets the specified requirements"
   input_parameters = "${data.template_file.aws_config_iam_password_policy.rendered}"

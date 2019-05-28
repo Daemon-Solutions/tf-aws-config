@@ -1,5 +1,5 @@
-resource "aws_config_config_rule" "guard_duty_rule" {
-  count       = "${var.guardduty_enabled}"
+resource "aws_config_config_rule" "guard_duty" {
+  count       = "${var.config_rule_guardduty_enabled ? 1 : 0}"
   name        = "centralised-guardduty-enabled"
   description = "Checks whether Amazon GuardDuty is enabled in your AWS account and region"
 
