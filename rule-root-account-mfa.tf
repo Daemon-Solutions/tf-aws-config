@@ -1,5 +1,5 @@
-resource "aws_config_config_rule" "root_account_mfa_enabled_rule" {
-  count       = "${var.root_mfa_enabled}"
+resource "aws_config_config_rule" "root_account_mfa_enabled" {
+  count       = "${var.config_rule_root_mfa_enabled ? 1 : 0}"
   name        = "root-account-mfa-enabled"
   description = "Checks whether users of your AWS account require a multi-factor authentication device to sign in with root credentials"
 

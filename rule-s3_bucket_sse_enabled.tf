@@ -1,5 +1,5 @@
-resource "aws_config_config_rule" "s3_bucket_server_side_encryption_enabled" {
-  count       = "${var.s3_bucket_server_side_encryption_enabled}"
+resource "aws_config_config_rule" "s3_bucket_sse_enabled" {
+  count       = "${var.config_rule_s3_bucket_sse_enabled ? 1 : 0}"
   name        = "s3_bucket_server_side_encryption_enabled"
   description = "Checks whether your AWS S3 buckets have SSE enabled"
 

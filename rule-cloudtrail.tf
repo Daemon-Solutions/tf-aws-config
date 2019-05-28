@@ -1,5 +1,5 @@
-resource "aws_config_config_rule" "cloudtrail_rule" {
-  count       = "${var.cloudtrail_enabled}"
+resource "aws_config_config_rule" "cloudtrail" {
+  count       = "${var.config_rule_cloudtrail_enabled ? 1 : 0}"
   name        = "cloudtrail-enabled"
   description = "Checks whether AWS CloudTrail is enabled in your AWS account. "
 

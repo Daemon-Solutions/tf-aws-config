@@ -1,9 +1,9 @@
-/// resource name variables
-variable "customer" {}
+// resource name variables
+variable "name_prefix" {}
 
-variable "envname" {}
+variable "s3_bucket_name" {}
 
-/// aws config settings
+// aws config settings
 variable "config_max_execution_frequency" {
   description = "The maximum frequency with which AWS Config runs evaluations for a rule"
   default     = "TwentyFour_Hours"
@@ -23,24 +23,54 @@ variable "sns_topic_arn" {
   default     = ""
 }
 
-/// guardduty enabled policy
-variable "guardduty_enabled" {
-  default = "0"
+// aggregators
+variable "aggregate_config_data" {
+  description = "Boolean indicating whether AWS Config should aggregate config data from source AWS Account IDs"
+  type        = "string"
+  default     = false
 }
 
-/// cloudtrail enabled policy
-variable "cloudtrail_enabled" {
-  default = "0"
+variable "aggregator_source_account_ids" {
+  description = "List of source AWS account IDs being aggregated"
+  type        = "list"
+  default     = []
 }
 
-/// root mfa enabled policy
-variable "root_mfa_enabled" {
-  default = "0"
+variable "aggregator_source_account_names" {
+  description = "List of source environment names i.e. dev/sit/prod for the configuration aggregator"
+  type        = "list"
+  default     = []
 }
 
-/// iam password policy
-variable "iam_password_policy_enabled" {
-  default = "0"
+variable "aggregator_regions" {
+  description = "List of source regions being aggregated"
+  type        = "list"
+  default     = []
+}
+
+// config rule - guardduty enabled policy
+variable "config_rule_guardduty_enabled" {
+  default = false
+}
+
+// config rule - cloudtrail enabled policy
+variable "config_rule_cloudtrail_enabled" {
+  default = false
+}
+
+// config rule - root mfa enabled policy
+variable "config_rule_root_mfa_enabled" {
+  default = false
+}
+
+// config rule - s3 bucket sse
+variable "config_rule_s3_bucket_sse_enabled" {
+  default = false
+}
+
+// config rule - iam password policy
+variable "config_rule_iam_password_policy_enabled" {
+  default = false
 }
 
 variable "password_require_uppercase" {
@@ -76,16 +106,4 @@ variable "password_reuse_prevention" {
 variable "password_max_age" {
   description = "Number of days before password expiration."
   default     = 90
-}
-
-/// s3 sse enabled policy
-variable "s3_bucket_server_side_encryption_enabled" {
-  default = "0"
-}
-
-variable "aws_config_s3_bucket" {}
-variable "aws_config_s3_bucket_arn" {}
-
-variable "s3_bucket_prefix" {
-  default = ""
 }

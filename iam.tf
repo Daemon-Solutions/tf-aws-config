@@ -1,5 +1,5 @@
 resource "aws_iam_role" "config" {
-  name = "${var.customer}-${var.envname}-config-role"
+  name = "${var.name_prefix}-config-role"
 
   assume_role_policy = <<POLICY
 {
@@ -20,7 +20,7 @@ POLICY
 }
 
 resource "aws_iam_role_policy" "config" {
-  name = "${var.customer}-${var.envname}-config"
+  name = "${var.name_prefix}-config"
   role = "${aws_iam_role.config.id}"
 
   policy = <<POLICY
@@ -33,8 +33,8 @@ resource "aws_iam_role_policy" "config" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${var.aws_config_s3_bucket_arn}",
-        "${var.aws_config_s3_bucket_arn}/*"
+        "${data.aws_s3_bucket.config.arn}",
+        "${data.aws_s3_bucket.config.arn}/*"
       ]
     }
   ]
