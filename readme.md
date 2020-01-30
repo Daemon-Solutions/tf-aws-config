@@ -8,6 +8,13 @@ https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-co
 
 The iam-password-policy rule is an example of sending paramaters in the rule via a rendered json template. If you wish to add a rule that allows additional parameters then use this as a reference.
 
+## Terraform version compatibility
+
+| Module version | Terraform version |
+|----------------|-------------------|
+| 3.x.x          | 0.12.x            |
+| 2.x.x          | 0.11.x            |
+
 
 Usage
 -----
@@ -22,11 +29,11 @@ Declare a module in your Terraform file, for example:
 
   `aggregate_config_data                    = true`
 
-  `aggregator_source_account_names          = ["${keys(var.aws_accounts)}"]`
+  `aggregator_source_account_names          = [keys(var.aws_accounts)]`
   
-  `aggregator_source_account_ids            = ["${values(var.aws_accounts)}"]`
+  `aggregator_source_account_ids            = [values(var.aws_accounts)]`
   
-  `aggregator_regions                       = ["${var.aws_region}"]`
+  `aggregator_regions                       = var.aws_region`
   
   `s3_bucket_name                           = "eu_west_1_config_bucket"`
   
