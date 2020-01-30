@@ -1,5 +1,5 @@
 resource "aws_config_config_rule" "guard_duty" {
-  count       = "${var.config_rule_guardduty_enabled ? 1 : 0}"
+  count       = var.config_rule_guardduty_enabled ? 1 : 0
   name        = "centralised-guardduty-enabled"
   description = "Checks whether Amazon GuardDuty is enabled in your AWS account and region"
 
@@ -9,7 +9,7 @@ resource "aws_config_config_rule" "guard_duty" {
   }
 
   depends_on = [
-    "aws_config_configuration_recorder.recorder",
-    "aws_config_delivery_channel.config",
+    aws_config_configuration_recorder.recorder,
+    aws_config_delivery_channel.config,
   ]
 }

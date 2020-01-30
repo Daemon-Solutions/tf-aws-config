@@ -7,7 +7,7 @@ variable "s3_bucket_name" {}
 variable "config_max_execution_frequency" {
   description = "The maximum frequency with which AWS Config runs evaluations for a rule"
   default     = "TwentyFour_Hours"
-  type        = "string"
+  type        = string
 }
 
 variable "recording_group_all_supported" {
@@ -26,25 +26,25 @@ variable "sns_topic_arn" {
 // aggregators
 variable "aggregate_config_data" {
   description = "Boolean indicating whether AWS Config should aggregate config data from source AWS Account IDs"
-  type        = "string"
+  type        = string
   default     = false
 }
 
 variable "aggregator_source_account_ids" {
   description = "List of source AWS account IDs being aggregated"
-  type        = "list"
+  type        = list
   default     = []
 }
 
 variable "aggregator_source_account_names" {
   description = "List of source environment names i.e. dev/sit/prod for the configuration aggregator"
-  type        = "list"
+  type        = list
   default     = []
 }
 
 variable "aggregator_regions" {
   description = "List of source regions being aggregated"
-  type        = "list"
+  type        = list
   default     = []
 }
 
